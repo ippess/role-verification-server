@@ -35,11 +35,6 @@ async def linked_role():
     response.set_cookie('clientState', str(state))
     return response
 
-@app.get("/get-user-metadata/<user_id>")
-async def user_metadta(user_id):
-    metadata = await discord_api.get_metadata(session=app.aiohttp_session, user_id=user_id)
-    return Response(json.dumps(metadata), mimetype='application/json')
-
 
 @app.get("/discord-oauth-callback")
 async def oauth():
@@ -109,15 +104,6 @@ async def oauth():
         return await render_template('fails.html', message='Exception while pushing metadata')
     
     return await render_template('success.html', name='Success')
-
-@app.route("/activity-callback")
-async def activity_callback():
-    code = request.args.get('code')
-    if code is None:
-        return abort(400)
-    tokens = await discord_api.get_oauth_tokens(session=app.aiohttp_session, code=code)
-    data_me = await discord_api.get_user_data(session=app.aiohttp_session, tokens=tokens)
-
 
 
 if __name__ == "__main__":
