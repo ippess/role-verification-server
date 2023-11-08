@@ -1,5 +1,5 @@
 import discord_api
-from quart import Quart, redirect, Response, request, abort, render_template
+from quart import Quart, redirect, request, render_template
 from discord.ext.ipc import Client
 import aiohttp
 import os

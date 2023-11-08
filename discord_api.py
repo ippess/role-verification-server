@@ -1,10 +1,8 @@
 import uuid
 import os
-from furl import furl
 from dotenv import load_dotenv
-from werkzeug.exceptions import HTTPException, InternalServerError
+from werkzeug.exceptions import HTTPException
 import json
-from quart import Response, abort
 from urllib.parse import urlencode
 
 load_dotenv()
